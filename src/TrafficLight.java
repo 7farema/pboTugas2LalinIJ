@@ -31,9 +31,9 @@ public class TrafficLight extends Panel{//extends artinya 'adalah'
 
         //atur tombol next
         Sequencer sequencer = new Sequencer(this);
-        NextButtonListener payAttention = new NextButtonListener(sequencer);
-        nextButton.addActionListener(payAttention);
-        this.add(BorderLayout.CENTER,nextButton);
+        Timer timer = new Timer();
+        TimerTask task = new Helper(sequencer);
+        timer.schedule(task,500,1000);
     }
 
     //metode yang mengubah lampu
@@ -64,7 +64,7 @@ public class TrafficLight extends Panel{//extends artinya 'adalah'
         Frame frame         = new Frame();
         TrafficLight light  = new TrafficLight();
         frame.add(light);
-        frame.addWindowListener(new ShutDownLight());
+//        frame.addWindowListener(new ShutDownLight());
         frame.pack();
         frame.show();
     }
